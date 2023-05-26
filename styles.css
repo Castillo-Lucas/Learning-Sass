@@ -1,0 +1,90 @@
+@charset "UTF-8";
+body {
+  background-color: #ccc;
+}
+
+h1 {
+  font-family: sans-serif, Helvetica, Arial;
+}
+
+/*Para compilar los cambios en Sass se debe escribir en la consola(en la carpeta del proyecto) la siguiente linea de comando:
+
+sass --watch styles.scss styles.css
+
+Esto es solo necesario una sola vez ya que despues, en cada cambio, se compila solo.
+*/
+/*Suponiendo que tenemos el siguiente HTML:
+
+  <div class="caja">
+      <h1>Soy una caja</h1>
+      <p>Soy un parrafo</p>
+      <div class="info">
+          25-5-2023
+          <span class="author">
+              Lucas Castillo
+          </span>
+      </div>
+  </div>
+
+Se pueden realizar la siguiente anidación:*/
+.caja {
+  border: 1px solid black;
+  width: 500px;
+  margin: 0px auto;
+  text-align: center;
+  background-color: wheat;
+  padding: 10px;
+}
+.caja h1 {
+  color: rgb(35, 113, 113);
+}
+.caja p {
+  color: rgba(117, 41, 8, 0.469);
+}
+.caja .info {
+  font-size: 20px;
+}
+.caja .info .author {
+  font-size: 15px;
+  color: rgb(136, 134, 7);
+}
+
+/*Podemos crear nuevos fichero .scss e ir separando los estilos que querramos usar en diferentes modulos.
+
+Por ejemplo, si solo quiero usar ciertos estilos en el encabezado puedo crear un fichero que se llame _encabezado.scss y luego importarlo
+en el fichero SASS principal(styles.scss) usando el siguiente comando: @use 'encabezado';
+
+Y asi sucesivamente con cada modulo(seccion) que quiera usar
+*/
+.caja {
+  border: 10px solid red;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px red;
+}
+
+.cajaDos {
+  border: 5px solid green;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px green;
+}
+
+/*Esto permite crear una cierta cantidad de estilos y aquellas clases que la invoquen puedan heredar lo que tiene, es como una funcion con la 
+diferencia que no se pueden invocar parametros*/
+.alertExito, .alertDanger, .alert {
+  border: 1px solid gray;
+  background-color: black;
+  color: gray;
+  padding: 10px;
+  width: 80%;
+  margin: 20px auto;
+}
+
+.alertDanger {
+  color: red;
+}
+
+.alertExito {
+  color: green;
+}
+
+/*# sourceMappingURL=styles.css.map */

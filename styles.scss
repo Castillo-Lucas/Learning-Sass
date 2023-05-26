@@ -1,0 +1,129 @@
+//------- VARIABLES --------
+
+//Sintaxis: $nombre:valor
+
+//EJEMPLOS
+
+$fuenteTipica: sans-serif, Helvetica, Arial;
+$colorFondo: #ccc;
+
+body {
+  background-color: $colorFondo;
+}
+
+h1 {
+  font-family: $fuenteTipica;
+}
+
+/*Para compilar los cambios en Sass se debe escribir en la consola(en la carpeta del proyecto) la siguiente linea de comando:
+
+sass --watch styles.scss styles.css
+
+Esto es solo necesario una sola vez ya que despues, en cada cambio, se compila solo.
+*/
+
+//-----------------------------------------------------------------------------------------------------------------------------------------
+
+//------- ANIDACION --------
+/*Suponiendo que tenemos el siguiente HTML:
+
+  <div class="caja">
+      <h1>Soy una caja</h1>
+      <p>Soy un parrafo</p>
+      <div class="info">
+          25-5-2023
+          <span class="author">
+              Lucas Castillo
+          </span>
+      </div>
+  </div>
+
+Se pueden realizar la siguiente anidación:*/
+
+.caja {
+  border: 1px solid black;
+  width: 500px;
+  margin: 0px auto;
+  text-align: center;
+  background-color: wheat;
+  padding: 10px;
+
+  h1 {
+    color: rgb(35, 113, 113);
+  }
+
+  p {
+    color: rgba(117, 41, 8, 0.469);
+  }
+
+  .info {
+    font-size: 20px;
+
+    .author {
+      font-size: 15px;
+      color: rgb(136, 134, 7);
+    }
+  }
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------------------
+
+//------- MODULOS --------
+/*Podemos crear nuevos fichero .scss e ir separando los estilos que querramos usar en diferentes modulos.
+
+Por ejemplo, si solo quiero usar ciertos estilos en el encabezado puedo crear un fichero que se llame _encabezado.scss y luego importarlo
+en el fichero SASS principal(styles.scss) usando el siguiente comando: @use 'encabezado';
+
+Y asi sucesivamente con cada modulo(seccion) que quiera usar
+*/
+
+//-----------------------------------------------------------------------------------------------------------------------------------------
+
+//------- MIXINS --------
+//Esto permite crear funciones y pasarle parametros
+
+//La sintaxis es la siguiente:
+@mixin crearBorder($color, $size, $shadow) {
+  border: $size solid $color;
+  border-radius: $size;
+  box-shadow: 0px 0px $size $color;
+}
+
+.caja {
+  @include crearBorder(red, 10px, black);
+}
+
+.cajaDos {
+  @include crearBorder(green, 5px, yellow);
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------------------
+
+//------- HERENCIAS --------
+/*Esto permite crear una cierta cantidad de estilos y aquellas clases que la invoquen puedan heredar lo que tiene, es como una funcion con la 
+diferencia que no se pueden invocar parametros*/
+
+//Padre:
+%alertFather {
+  border: 1px solid gray;
+  background-color: black;
+  color: gray;
+  padding: 10px;
+  width: 80%;
+  margin: 20px auto;
+}
+
+//Clases que invocan al padre:
+.alert {
+  @extend %alertFather;
+}
+
+.alertDanger {
+  @extend %alertFather;
+  color: red;
+}
+
+.alertExito {
+  @extend %alertFather;
+  color: green;
+}
